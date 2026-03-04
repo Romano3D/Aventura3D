@@ -3,60 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 
-public class StateMachine : MonoBehaviour
+public class StateMachine<T> where T : System.Enum
 {
-    public enum States
-    {
-        NONE,
-    }
-
-    //Chave
-    public Dictionary<States, StateBase> dictionaryState;
+    public Dictionary<T, StateBase> dictionaryState;
 
     private StateBase _currentState;
     public float timeToStartGame = 1f;
 
-    private void Awake()
+    public StateBase CurrentState
     {
-        dictionaryState = new Dictionary<States, StateBase>();
-        dictionaryState.Add(States.NONE, new StateBase());
+        get { return _currentState; }
+    }
+    public void Init()
+    {
+        dictionaryState = new Dictionary<T, StateBase>();
+    }
 
-        SwitchState(States.NONE);
-
-        Invoke(nameof(StartGame), timeToStartGame);
-    }
-    [Button]
-    private void StartGame()
+   public void RegisterStates(T typeEnum, StateBase state)
     {
-        SwitchState(States.NONE);
+        dictionaryState.Add(typeEnum, state);
     }
-#if UNITY_EDITOR
-    #region DEBUG
-    [Button]
-    private void ChangesStateToStateX()
+    public void SwitchState(T state)
     {
-        SwitchState(States.NONE);
-    }
-    [Button]
-    private void ChangesStateToStateY()
-    {
-        SwitchState(States.NONE);
-    }
-    #endregion
-#endif
-
-    private void SwitchState(States state)
-    {
-        if (_currentState != null) _currentState.OnStateExit();
+        _currentState?.OnStateExit();
 
         _currentState = dictionaryState[state];
 
-        _currentState.OnStateExit();
+        _currentState.OnStateEnter();
     }
 
-    private void Update()
+    public void Update()
     {
-        if (_currentState != null) _currentState.OnStateStay();
+        _currentState?.OnStateStay();
 
         if (Input.GetKeyDown(KeyCode.O))
         {
