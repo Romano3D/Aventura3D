@@ -8,25 +8,11 @@ public class GunBase : MonoBehaviour
 
         public Transform positionToShoot;
         public float timeBetweenShoot = 3f;
+        public float speed = 50f;
 
         private Coroutine _currentCoroutine;
 
-    public KeyCode keyCode = KeyCode.Z;
-
-    void Update()
-        {
-            if (Input.GetKeyDown(keyCode))
-            {
-                _currentCoroutine = StartCoroutine(StartShoot());
-            }
-            else if (Input.GetKeyUp(keyCode))
-            {
-                if (_currentCoroutine != null)
-                    StopCoroutine(_currentCoroutine);
-            }
-        }
-
-        IEnumerator StartShoot()
+        protected virtual IEnumerator ShootCoroutine()
         {
             while (true)
             {
@@ -35,10 +21,23 @@ public class GunBase : MonoBehaviour
             }
         }
 
-        public void Shoot()
+        public virtual void Shoot()
         {
             var projectile = Instantiate(prefabProjectlie);
             projectile.transform.position = positionToShoot.position;
             projectile.transform.rotation = positionToShoot.rotation;
+            projectile.speed = speed;
+    }
+
+    public void StartShoot()
+    {
+        CancelShoot();
+        _currentCoroutine = StartCoroutine(ShootCoroutine());
+    }
+
+    public void CancelShoot()
+    {
+        if (_currentCoroutine != null)
+            StopCoroutine(_currentCoroutine);
     }
     }
