@@ -35,6 +35,24 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GunLimit"",
+                    ""type"": ""Button"",
+                    ""id"": ""cb04b2ae-3a7d-4c82-b831-39953e4c5d83"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GunAngle"",
+                    ""type"": ""Button"",
+                    ""id"": ""825317e9-e7f4-4919-bbd1-05921fb39bc7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -48,6 +66,28 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f084bc65-1972-4363-b5e1-b519929a2b1c"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GunLimit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3dcccbdd-ea24-4a93-9011-04f97fed5fac"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GunAngle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -57,6 +97,8 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         // GamePlay
         m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
         m_GamePlay_Shoot = m_GamePlay.FindAction("Shoot", throwIfNotFound: true);
+        m_GamePlay_GunLimit = m_GamePlay.FindAction("GunLimit", throwIfNotFound: true);
+        m_GamePlay_GunAngle = m_GamePlay.FindAction("GunAngle", throwIfNotFound: true);
     }
 
     ~@Inputs()
@@ -124,11 +166,15 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_GamePlay;
     private List<IGamePlayActions> m_GamePlayActionsCallbackInterfaces = new List<IGamePlayActions>();
     private readonly InputAction m_GamePlay_Shoot;
+    private readonly InputAction m_GamePlay_GunLimit;
+    private readonly InputAction m_GamePlay_GunAngle;
     public struct GamePlayActions
     {
         private @Inputs m_Wrapper;
         public GamePlayActions(@Inputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Shoot => m_Wrapper.m_GamePlay_Shoot;
+        public InputAction @GunLimit => m_Wrapper.m_GamePlay_GunLimit;
+        public InputAction @GunAngle => m_Wrapper.m_GamePlay_GunAngle;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -141,6 +187,12 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @GunLimit.started += instance.OnGunLimit;
+            @GunLimit.performed += instance.OnGunLimit;
+            @GunLimit.canceled += instance.OnGunLimit;
+            @GunAngle.started += instance.OnGunAngle;
+            @GunAngle.performed += instance.OnGunAngle;
+            @GunAngle.canceled += instance.OnGunAngle;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -148,6 +200,12 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @GunLimit.started -= instance.OnGunLimit;
+            @GunLimit.performed -= instance.OnGunLimit;
+            @GunLimit.canceled -= instance.OnGunLimit;
+            @GunAngle.started -= instance.OnGunAngle;
+            @GunAngle.performed -= instance.OnGunAngle;
+            @GunAngle.canceled -= instance.OnGunAngle;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -168,5 +226,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     public interface IGamePlayActions
     {
         void OnShoot(InputAction.CallbackContext context);
+        void OnGunLimit(InputAction.CallbackContext context);
+        void OnGunAngle(InputAction.CallbackContext context);
     }
 }

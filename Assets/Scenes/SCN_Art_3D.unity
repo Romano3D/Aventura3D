@@ -3110,7 +3110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485709b3b09e42a488771dcdc7cbaa20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunBase: {fileID: 457405688130791773, guid: 97469f260d105ad46a861454eee26d2c, type: 3}
+  uIGunUpdaters: []
+  guns:
+  - {fileID: 457405688130791773, guid: 97469f260d105ad46a861454eee26d2c, type: 3}
+  - {fileID: 2557319243582925298, guid: 528f9405f04acaa4883ffa2615a11c6a, type: 3}
   gunPosition: {fileID: 1119211031}
 --- !u!1001 &629388096
 PrefabInstance:
