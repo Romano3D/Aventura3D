@@ -9579,6 +9579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5113013a623bb42b881f695af70173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collider: {fileID: 1766849962}
   startLife: 10
   _currentLive: 0
   _animationBae: {fileID: 1766849963}
