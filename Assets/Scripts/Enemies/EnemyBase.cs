@@ -12,6 +12,8 @@ namespace Enemy
 
         public Collider _collider;
         public FlashColor flashColor;
+        public ParticleSystem _particleSystem;
+
         public float startLife = 10f;
 
         [SerializeField] private float _currentLive;
@@ -56,6 +58,8 @@ namespace Enemy
         public void OnDamage(float f)
         {
             if (flashColor != null) flashColor.Flash();
+            if (_particleSystem != null) _particleSystem.Emit(15);
+
             _currentLive -= f;
             
             if( _currentLive <= 0)
