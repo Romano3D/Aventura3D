@@ -130,5 +130,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabProjectlie: {fileID: 8966607924949394627, guid: 25225144b84103143b176a8b068240b0, type: 3}
   positionToShoot: {fileID: 8031119245829942889}
-  timeBetweenShoot: 3
+  timeBetweenShoot: 2
   speed: 50

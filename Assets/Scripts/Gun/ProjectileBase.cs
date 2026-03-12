@@ -17,14 +17,21 @@ public class ProjectileBase : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(speed * Time.deltaTime * Vector3.forward);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
     private void OnCollisionEnter(Collision collision)
     {
-       var damageable = collision.transform.GetComponent<IDamageable>();
+        var damageable = collision.transform.GetComponent<IDamageable>();
 
-        if (damageable != null) damageable.Damage(damageAmount);
+        if (damageable != null)
+        {
+            Vector3 dir = collision.transform.position = transform.position;
+            dir = -dir.normalized;
+            dir.y = 0;
 
-        Destroy(gameObject);
+            damageable.Damage(damageAmount, dir);
+
+            Destroy(gameObject);
+        }
     }
 }

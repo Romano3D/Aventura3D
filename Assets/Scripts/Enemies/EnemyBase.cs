@@ -60,9 +60,11 @@ namespace Enemy
             if (flashColor != null) flashColor.Flash();
             if (_particleSystem != null) _particleSystem.Emit(15);
 
+            transform.position -= transform.forward;
+
             _currentLive -= f;
-            
-            if( _currentLive <= 0)
+
+            if ( _currentLive <= 0)
             {
                 Kill();
             }
@@ -80,19 +82,15 @@ namespace Enemy
         }
         #endregion
 
-        //debug
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                OnDamage(5f);
-            }
-        }
-
         public void Damage(float damage)
         {
             Debug.Log("Damage");
             OnDamage(damage);
+        }
+        public void Damage(float damage, Vector3 dir)
+        {
+            OnDamage(damage);
+            transform.DOMove(transform.position - dir, .1f);
         }
     }
 }

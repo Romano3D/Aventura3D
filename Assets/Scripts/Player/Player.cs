@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed, Time.deltaTime, 0);
+        transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed, 0);
 
         var inputAxisVertical = Input.GetAxis("Vertical");
         var speedVector = transform.forward * inputAxisVertical * speed;
