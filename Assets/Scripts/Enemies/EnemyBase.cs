@@ -40,17 +40,17 @@ namespace Enemy
         {
             ResetLife();
 
-            if(startWithBornAnimation)
+            if (startWithBornAnimation)
                 BornAnimation();
         }
         protected virtual void Kill()
         {
             Onkilll();
         }
-        
-        protected virtual void Onkilll() 
+
+        protected virtual void Onkilll()
         {
-            if (_collider != null) _collider.enabled = false; 
+            if (_collider != null) _collider.enabled = false;
             Destroy(gameObject, 3f);
             PlayAnimationByTrigger(AnimationType.DEATH);
         }
@@ -64,7 +64,7 @@ namespace Enemy
 
             _currentLive -= f;
 
-            if ( _currentLive <= 0)
+            if (_currentLive <= 0)
             {
                 Kill();
             }
@@ -91,6 +91,17 @@ namespace Enemy
         {
             OnDamage(damage);
             transform.DOMove(transform.position - dir, .1f);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            Player p = collision.transform.GetComponent<Player>();
+
+            if (p != null)
+
+            {
+                p.Damage(1);
+            }
         }
     }
 }
