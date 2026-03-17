@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Animation;
+using Unity.VisualScripting;
 
 
 namespace Enemy
@@ -15,6 +16,7 @@ namespace Enemy
         public ParticleSystem _particleSystem;
 
         public float startLife = 10f;
+        public bool lookAtPlayer = false;
 
         [SerializeField] private float _currentLive;
 
@@ -27,9 +29,18 @@ namespace Enemy
         public Ease startAnimationEase = Ease.OutBack;
         public bool startWithBornAnimation = true;
 
+        private Player _player;
+
+
+
         private void Awake()
         {
             Init();
+        }
+
+        private void Start()
+        {
+            _player = GameObject.FindObjectOfType<Player>();
         }
 
         protected virtual void ResetLife()
@@ -101,6 +112,14 @@ namespace Enemy
 
             {
                 p.Damage(1);
+            }
+        }
+
+        public virtual void Update()
+        {
+            if (lookAtPlayer)
+            {
+                transform.LookAt(_player.transform.position);
             }
         }
     }

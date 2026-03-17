@@ -32,7 +32,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Damage(float damage, Vector3 dir)
     {
-        
+        Damage(damage);
     }
 
     #endregion

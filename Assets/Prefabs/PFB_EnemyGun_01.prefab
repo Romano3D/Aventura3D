@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3776069312617785227}
   - component: {fileID: 5450542011707995603}
   m_Layer: 0
-  m_Name: PFB_GunBase
+  m_Name: PFB_EnemyGun_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9130791802784135215}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b1a5742c178988449b3ce79d00ce57c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabProjectlie: {fileID: 8966607924949394627, guid: 25225144b84103143b176a8b068240b0, type: 3}
+  prefabProjectlie: {fileID: 8966607924949394627, guid: 3edb40411f46a704b8a9ed381e7ad489, type: 3}
   positionToShoot: {fileID: 8031119245829942889}
-  timeBetweenShoot: 0.3
+  timeBetweenShoot: 2
   speed: 50
