@@ -1,15 +1,16 @@
+using DG.Tweening;
+using Ebac.StateMachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Ebac.StateMachine;
-using DG.Tweening;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 namespace Boss
 {
 
-    public enum BossAction 
+    public enum BossAction
     {
         INIT,
         IDLE,
@@ -24,6 +25,11 @@ namespace Boss
         [Header("Animation")]
         public float startAnimationDuration = .5f;
         public Ease startAnimationEsase = Ease.OutBack;
+        public bool lookAtPlayer = false;
+
+        private bool _isActive = false;
+
+        private Player _player;
 
         [Header("Attack")]
         public int attackAmount = 5;
@@ -36,10 +42,29 @@ namespace Boss
 
         public HealthBase healthBase;
 
+        public void ActivateBoss()
+        {
+            _isActive = true;
+
+            // Inicia animação inicial
+            StartInitAnimation();
+
+            // Começa pelo estado inicial
+            SwichtState(BossAction.INIT);
+
+            Debug.Log("Boss ativado!");
+        }
+
         private void Awake()
         {
-            Init();
-            healthBase.OnKill += OnBossKill;
+            {
+                Init();
+                _player = FindObjectOfType<Player>();
+
+                Debug.Log(_player == null ? "Player NULL" : "Player OK");
+
+                healthBase.OnKill += OnBossKill;
+            }
         }
 
         private void Init()
@@ -86,12 +111,12 @@ namespace Boss
 
         IEnumerator GoToPointCoroutine(Transform t, Action onArrive = null)
         {
-            while(Vector3.Distance(transform.position, t.position) > 1f)
+            while (Vector3.Distance(transform.position, t.position) > 1f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, t.position, Time.deltaTime * speed);
                 yield return new WaitForEndOfFrame();
             }
-            onArrive ?.Invoke(); 
+            onArrive?.Invoke();
         }
 
         #endregion
@@ -99,7 +124,8 @@ namespace Boss
         #region ANIMATION
         public void StartInitAnimation()
         {
-            transform.DOScale(0, startAnimationDuration).SetEase(startAnimationEsase).From();
+            transform.localScale = Vector3.zero;
+            transform.DOScale(1f, startAnimationDuration).SetEase(startAnimationEsase);
         }
         #endregion
 
@@ -127,5 +153,15 @@ namespace Boss
             stateMachine.SwitchState(state, this);
         }
         #endregion
+
+        public virtual void Update()
+        {
+            if (!_isActive) return;
+
+            if (lookAtPlayer)
+            {
+                transform.LookAt(_player.transform.position);
+            }
+        }
     }
 }
