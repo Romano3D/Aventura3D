@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerStateJump : StateBase
 {
-    public override void OnStateEnter(object o = null)
+    public override void OnStateEnter(params object[] objs)
     {
         Debug.Log("Player começou a pular");
     }

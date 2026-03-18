@@ -3,7 +3,7 @@ using Ebac.StateMachine;
 
 public class PlayerStateIdle : StateBase
 {
-    public override void OnStateEnter(object o = null)
+    public override void OnStateEnter(params object[] objs)
     {
         Debug.Log("Player entrou no estado IDLE");
     }
