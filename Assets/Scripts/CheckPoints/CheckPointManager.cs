@@ -19,21 +19,7 @@ public class CheckPointManager : Singleton<CheckPointManager>
         return lastCheckPointKey > 0;
     }
 
-    public void SaveCheckPoint(int i)
-    {
-        Debug.Log("Chamou SaveCheckpoint");
-
-        if (popupUI != null)
-        {
-            Debug.Log("Chamando popup...");
-            popupUI.Show(i);
-        }
-        else
-        {
-            Debug.Log("popupUI está NULL");
-        }
-    }
-    /*  public void SaveCheckPoint(int i)
+      public void SaveCheckPoint(int i)
       {
           if (i > lastCheckPointKey)
           {
@@ -44,7 +30,7 @@ public class CheckPointManager : Singleton<CheckPointManager>
           {
               popupUI.Show(i);
           }
-      }*/
+      }
 
     public Vector3 GetPositionFromLastCheckpoint()
     {
