@@ -13,6 +13,7 @@ public class CheckPointBase : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!checkpointActived && other.transform.tag == "Player")
+
         {
             CheckCheckPoint();
         }
