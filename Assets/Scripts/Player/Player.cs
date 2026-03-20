@@ -52,7 +52,23 @@ public class Player : MonoBehaviour //, IDamageable
             _alive = false;
             animator.SetTrigger("Death");
             colliders.ForEach(i => i.enabled = false);
+
+            Invoke(nameof(Revive), 3f);
         }
+    }
+
+    public void Revive()
+    {
+        _alive = true;
+        healthBase.ResetLife();
+        animator.SetTrigger("Revive"); 
+        Respawn();
+        Invoke(nameof(TurnOnCollider), 1f);
+    }
+
+    private void TurnOnCollider()
+    {
+        colliders.ForEach(i => i.enabled = true);
     }
 
     public void Damage(HealthBase h)
@@ -105,7 +121,14 @@ public class Player : MonoBehaviour //, IDamageable
 
         animator.SetBool("Run", inputAxisVertical != 0);
 
-        
+    }
+    [NaughtyAttributes.Button]
+    public void Respawn()
+    {
+        if (CheckPointManager.Instance.HasCheckPoint())
+        {
+            transform.position = CheckPointManager.Instance.GetPositionFromLastCheckpoint();
+        }
     }
 
 }
