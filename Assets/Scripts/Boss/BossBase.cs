@@ -52,7 +52,7 @@ namespace Boss
             // Começa pelo estado inicial
             SwichtState(BossAction.INIT);
 
-            Debug.Log("Boss ativado!");
+            //Debug.Log("Boss ativado!");
         }
 
         private void Awake()
@@ -61,7 +61,7 @@ namespace Boss
                 Init();
                 _player = FindObjectOfType<Player>();
 
-                Debug.Log(_player == null ? "Player NULL" : "Player OK");
+               // Debug.Log(_player == null ? "Player NULL" : "Player OK");
 
                 healthBase.OnKill += OnBossKill;
             }

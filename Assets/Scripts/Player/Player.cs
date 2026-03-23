@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class Player : MonoBehaviour //, IDamageable
+public class Player : MonoBehaviour, IDamageable
 {
     public List<Collider> colliders;
     public Animator animator;
@@ -52,6 +52,7 @@ public class Player : MonoBehaviour //, IDamageable
             _alive = false;
             animator.SetTrigger("Death");
             colliders.ForEach(i => i.enabled = false);
+            characterController.enabled = false;
 
             Invoke(nameof(Revive), 3f);
         }
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour //, IDamageable
         healthBase.ResetLife();
         animator.SetTrigger("Revive"); 
         Respawn();
+        characterController.enabled = true;
         Invoke(nameof(TurnOnCollider), 1f);
     }
 
@@ -73,17 +75,26 @@ public class Player : MonoBehaviour //, IDamageable
 
     public void Damage(HealthBase h)
     {
-        flashColors.ForEach(i => i.Flash());
+        flashColors.ForEach(i =>
+        {
+            if (i != null) i.Flash();
+        });
+    }
+    public void Damage(float damage)
+    {
+        healthBase.Damage(damage);
     }
 
     public void Damage(float damage, Vector3 dir)
     {
-       // Damage(damage);
+        healthBase.Damage(damage);
     }
 
     #endregion
     private void Update()
     {
+        if (!_alive) return;
+        if (characterController == null || !characterController.enabled) return;
         transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed, 0);
 
         var inputAxisVertical = Input.GetAxis("Vertical");

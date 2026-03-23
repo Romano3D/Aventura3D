@@ -12,7 +12,7 @@ public class HealthBase : MonoBehaviour, IDamageable
     public Action<HealthBase> OnDamage;
     public Action<HealthBase> OnKill;
 
-    public List<UIFillUpdater> uiFillUpdater;
+    public List<UIFillUpdater> uiGunUpdater;
 
     private void Awake()
     {
@@ -26,12 +26,13 @@ public class HealthBase : MonoBehaviour, IDamageable
     public void ResetLife()
     {
         _currentLife = startLife;
+        UpdateUI();
     }
 
     protected virtual void Kill()
     {
-       if(destroyOnKill) 
-        Destroy(gameObject, 3f);
+        if (destroyOnKill)
+            Destroy(gameObject, 3f);
 
         OnKill?.Invoke(this);
     }
@@ -51,20 +52,21 @@ public class HealthBase : MonoBehaviour, IDamageable
             Kill();
         }
         UpdateUI();
-
         OnDamage?.Invoke(this);
     }
 
     public void Damage(float damage, Vector3 dir)
     {
-       Damage(damage);
+        Damage(damage);
     }
 
     private void UpdateUI()
     {
-        if(uiFillUpdater != null)
+        if (uiGunUpdater != null)
         {
-            uiFillUpdater.ForEach(i => i.UpdateValue((float)_currentLife / startLife));
+            uiGunUpdater.ForEach(i => i.UpdateValue((float)_currentLife / startLife));
+         
+
         }
     }
 }
