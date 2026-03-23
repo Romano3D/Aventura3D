@@ -78,6 +78,7 @@ public class Player : MonoBehaviour, IDamageable
         flashColors.ForEach(i =>
         {
             if (i != null) i.Flash();
+            EffectsManager.Instance.ChangeVignette();
         });
     }
     public void Damage(float damage)
