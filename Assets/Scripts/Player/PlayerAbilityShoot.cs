@@ -48,11 +48,13 @@ public class PlayerAbilityShoot : PlayerAbilityBase
 
         _currentGun.transform.localPosition = Vector3.zero;
         _currentGun.transform.localEulerAngles = Vector3.zero;
+
     }
 
     private void StartShoot()
     {
         _currentGun.StartShoot();
+        ShakeCamera.Instance.Shake();
         Debug.Log("Shoot");
     }
 
