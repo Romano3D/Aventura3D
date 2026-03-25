@@ -14,7 +14,7 @@ namespace Item
         public float timToHide = 3;
         public GameObject graphicItem;
 
-        public Collider collider;
+        public new Collider collider;
 
         [Header("Sounds")]
         public AudioSource audioSource;

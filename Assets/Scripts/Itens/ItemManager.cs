@@ -30,6 +30,10 @@ namespace Item
                 i.soInt.value = 0;
             }
         }
+        public ItemSetup GetItemByType(ItemType itemType)
+        {
+            return itemSetups.Find(i => i.itemType == itemType);
+        }
         public void AddByType(ItemType itemType, int amount = 1)
         {
             if (amount < 0) return;
@@ -37,7 +41,7 @@ namespace Item
             itemSetups.Find(i => i.itemType == itemType).soInt.value += amount; 
         }
 
-        public void RemoveByType(ItemType itemType, int amount = -1)
+        public void RemoveByType(ItemType itemType, int amount = 1)
         {
             var item = itemSetups.Find(i => i.itemType == itemType);
             item.soInt.value -= amount;
@@ -67,5 +71,6 @@ namespace Item
     {
         public ItemType itemType;
         public SOint soInt;
+        public Sprite icon;
     }
 

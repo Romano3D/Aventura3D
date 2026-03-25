@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using Ebac.Core.Singleton;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : Singleton<Player>, IDamageable
 {
     public List<Collider> colliders;
     public Animator animator;
