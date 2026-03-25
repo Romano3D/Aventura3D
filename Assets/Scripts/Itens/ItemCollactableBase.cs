@@ -2,45 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemCollactableBase : MonoBehaviour
+namespace Item
 {
-    public string compareTag = "Player";
-    public ParticleSystem particleVFX;
-    public float timToHide = 3;
-    public GameObject graphicItem;
 
-    [Header("Sounds")]
-    public AudioSource audioSource;
-
-  private void Awake()
+    public class ItemCollactableBase : MonoBehaviour
     {
-       // if (particleVFX != null) particleVFX.transform.SetParent(null);
-    }
+        public ItemType itemType;
 
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.transform.CompareTag(compareTag))
+        public string compareTag = "Player";
+        public ParticleSystem particleVFX;
+        public float timToHide = 3;
+        public GameObject graphicItem;
+
+        public Collider collider;
+
+        [Header("Sounds")]
+        public AudioSource audioSource;
+
+        private void Awake()
         {
-            Collect();
+            // if (particleVFX != null) particleVFX.transform.SetParent(null);
         }
-    }
-    protected virtual void Collect()
-    {
-        if (graphicItem != null) graphicItem.SetActive(false);
-        Invoke("HideObject", timToHide);
-        gameObject.SetActive(false);
-        OnCollect();
-    }
-    private void HideObject()
-    {
-        gameObject.SetActive(false);
-    }
-    protected virtual void OnCollect()
-    {
-        if (particleVFX != null) particleVFX.Play();
-        if (audioSource != null) audioSource.Play();
-    }
 
+        private void OnTriggerEnter(Collider collision)
+        {
+            if (collision.transform.CompareTag(compareTag))
+            {
+                Collect();
+            }
+        }
+        protected virtual void Collect()
+        {
+            if (collider != null) collider.enabled = false;
+            if (graphicItem != null) graphicItem.SetActive(false);
+            Invoke("HideObject", timToHide);
+            gameObject.SetActive(false);
+            OnCollect();
+        }
+        private void HideObject()
+        {
+            gameObject.SetActive(false);
+        }
+        protected virtual void OnCollect()
+        {
+            if (particleVFX != null) particleVFX.Play();
+            if (audioSource != null) audioSource.Play();
+            ItemManager.Instance.AddByType(itemType);
+        }
+
+    }
 }
  
 
