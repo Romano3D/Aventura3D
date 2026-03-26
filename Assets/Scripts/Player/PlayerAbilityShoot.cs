@@ -54,13 +54,11 @@ public class PlayerAbilityShoot : PlayerAbilityBase
     private void StartShoot()
     {
         _currentGun.StartShoot();
-        ShakeCamera.Instance.Shake();
-        Debug.Log("Shoot");
+     
     }
 
     private void CancelShoot()
     {
-        Debug.Log("Cancel Shoot");
         _currentGun.CancelShoot();
     }
 }

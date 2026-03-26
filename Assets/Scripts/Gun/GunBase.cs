@@ -21,14 +21,22 @@ public class GunBase : MonoBehaviour
             }
         }
 
-        public virtual void Shoot()
-        {
-            var projectile = Instantiate(prefabProjectlie);
-            projectile.transform.position = positionToShoot.position;
-            projectile.transform.rotation = positionToShoot.rotation;
-            projectile.speed = speed;
+    public virtual void Shoot()
+    {
+        var projectile = Instantiate(prefabProjectlie);
+        projectile.transform.position = positionToShoot.position;
+        projectile.transform.rotation = positionToShoot.rotation;
 
-       
+        projectile.owner = transform.root.gameObject; 
+
+        projectile.speed = speed;
+
+        var projectileCollider = projectile.GetComponent<Collider>();
+
+        if (projectileCollider != null)
+        {
+            var ownerColliders = transform.root.GetComponentsInChildren<Collider>();
+        }
     }
 
     public void StartShoot()

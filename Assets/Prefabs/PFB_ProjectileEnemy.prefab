@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2480068676781278204}
   - component: {fileID: 8966607924949394627}
   - component: {fileID: -7733856556778743925}
+  - component: {fileID: 7039140739762988496}
   m_Layer: 0
   m_Name: PFB_ProjectileEnemy
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   timeToDestroy: 2
   damageAmount: 5
   speed: 60
+  owner: {fileID: 0}
   tagsToHit:
   - Player
 --- !u!54 &-7733856556778743925
@@ -78,6 +80,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!135 &7039140739762988496
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843507132749507355}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8906567697763962957
 GameObject:
   m_ObjectHideFlags: 0

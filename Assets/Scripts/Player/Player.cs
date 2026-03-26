@@ -28,9 +28,10 @@ public class Player : Singleton<Player>, IDamageable
 
     [Header("Life")]
     public HealthBase healthBase;
-    public UIFillUpdater uiGunUpdater;
 
     private bool _alive = true;
+
+    private bool isRespawning;
 
     private void OnValidate()
     {
@@ -82,11 +83,13 @@ public class Player : Singleton<Player>, IDamageable
         {
             if (i != null) i.Flash();
             EffectsManager.Instance.ChangeVignette();
+            ShakeCamera.Instance.Shake();
         });
     }
     public void Damage(float damage)
     {
         healthBase.Damage(damage);
+
     }
 
     public void Damage(float damage, Vector3 dir)
@@ -98,7 +101,9 @@ public class Player : Singleton<Player>, IDamageable
     private void Update()
     {
         if (!_alive) return;
+        if (isRespawning) return; 
         if (characterController == null || !characterController.enabled) return;
+
         transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed, 0);
 
         var inputAxisVertical = Input.GetAxis("Vertical");
@@ -142,9 +147,24 @@ public class Player : Singleton<Player>, IDamageable
     {
         if (CheckPointManager.Instance.HasCheckPoint())
         {
+            isRespawning = true;
+
+            characterController.enabled = false;
+
             transform.position = CheckPointManager.Instance.GetPositionFromLastCheckpoint();
+
+            vSpeed = 0;
+
+            characterController.enabled = true;
+
+            StartCoroutine(EndRespawn()); //  chama aqui
         }
     }
 
+    private IEnumerator EndRespawn()
+    {
+        yield return new WaitForEndOfFrame();
+        isRespawning = false;
+    }
 }
 

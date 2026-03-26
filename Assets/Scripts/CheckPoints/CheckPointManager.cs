@@ -19,22 +19,30 @@ public class CheckPointManager : Singleton<CheckPointManager>
         return lastCheckPointKey > 0;
     }
 
-      public void SaveCheckPoint(int i)
-      {
-          if (i > lastCheckPointKey)
-          {
-              lastCheckPointKey = i;
-          }
+    public void SaveCheckPoint(int i)
+    {
+        if (i > lastCheckPointKey)
+        {
+            lastCheckPointKey = i;
+        }
 
-          if (popupUI != null)
-          {
-              popupUI.Show(i);
-          }
-      }
+        if (popupUI != null)
+        {
+            popupUI.Show(i);
+        }
+    }
 
     public Vector3 GetPositionFromLastCheckpoint()
     {
+
         var checkpoint = checkPoints.Find(i => i.key == lastCheckPointKey);
+
+        if (checkpoint == null)
+        {
+            Debug.LogError("Checkpoint NÃO encontrado!");
+            return Vector3.zero;
+        }
+
         return checkpoint.transform.position;
     }
 }

@@ -5,7 +5,7 @@ public class PlayerStateIdle : StateBase
 {
     public override void OnStateEnter(params object[] objs)
     {
-        Debug.Log("Player entrou no estado IDLE");
+        
     }
 
     public override void OnStateStay()
@@ -15,6 +15,6 @@ public class PlayerStateIdle : StateBase
 
     public override void OnStateExit()
     {
-        Debug.Log("Player saiu do estado IDLE");
+        
     }
 }

@@ -95,7 +95,6 @@ namespace Enemy
 
         public void Damage(float damage)
         {
-            Debug.Log("Damage");
             OnDamage(damage);
         }
         public void Damage(float damage, Vector3 dir)
