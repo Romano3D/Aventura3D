@@ -37,13 +37,15 @@ public class Player : Singleton<Player>, IDamageable
         if (healthBase == null) healthBase = GetComponent<HealthBase>();
     }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         OnValidate();
 
         healthBase.OnDamage += Damage;
         healthBase.OnKill += OnKill;
     }
+
 
     #region LIFE
     private void OnKill(HealthBase h)
