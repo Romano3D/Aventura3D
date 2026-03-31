@@ -30,11 +30,13 @@ public class Player : Singleton<Player>, IDamageable
 
     [Header("Life")]
     public HealthBase healthBase;
-    private bool _alive = true;
     private bool isRespawning;
 
     [Space]
     [SerializeField] private ClothChanger _clothChanger;
+
+    private bool _alive = true;
+    private bool _jumping = false;
 
     private void OnValidate()
     {
@@ -115,10 +117,23 @@ public class Player : Singleton<Player>, IDamageable
         #region JUMP
         if (characterController.isGrounded)
         {
+            if (_jumping)
+            {
+               _jumping = false;
+                animator.SetTrigger("Land");
+            }
+
             vSpeed = 0;
             if (Input.GetKeyDown(jumpKeyCode))
             {
                 vSpeed = jumpSpeed;
+
+                if (!_jumping)
+                {
+                    _jumping = true;
+                    animator.SetTrigger("Jump");
+                }
+
             }
         }
         #endregion
