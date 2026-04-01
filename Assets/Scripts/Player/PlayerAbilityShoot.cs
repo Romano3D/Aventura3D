@@ -11,6 +11,7 @@ public class PlayerAbilityShoot : PlayerAbilityBase
     public Transform gunPosition;
 
     private GunBase _currentGun;
+    public FlashColor _flashColor;
 
     private int _currentGunIndex = 0;
     protected override void Init()
@@ -38,8 +39,6 @@ public class PlayerAbilityShoot : PlayerAbilityBase
         _currentGun = Instantiate(guns[index], gunPosition);
         _currentGun.transform.localPosition = Vector3.zero;
         _currentGun.transform.localEulerAngles = Vector3.zero;
-
-        Debug.Log("Arma trocada para: " + guns[index].name);
     }
 
     private void CreateGun()
@@ -54,7 +53,7 @@ public class PlayerAbilityShoot : PlayerAbilityBase
     private void StartShoot()
     {
         _currentGun.StartShoot();
-     
+        _flashColor?.Flash();
     }
 
     private void CancelShoot()
