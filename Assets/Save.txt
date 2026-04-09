@@ -1,0 +1,5 @@
+{
+    "lastLevel": 2,
+    "playerName": "Romano",
+    "qualquer": ""
+}

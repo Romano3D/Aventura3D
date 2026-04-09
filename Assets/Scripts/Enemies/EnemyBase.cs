@@ -1,10 +1,7 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Animation;
-using Unity.VisualScripting;
-
+using UnityEngine.Events;
 
 namespace Enemy
 {
@@ -29,9 +26,12 @@ namespace Enemy
         public Ease startAnimationEase = Ease.OutBack;
         public bool startWithBornAnimation = true;
 
+
+        [Header("Events")]
+        public UnityEvent OnKillEvent;
+
+
         private Player _player;
-
-
 
         private void Awake()
         {
@@ -64,6 +64,7 @@ namespace Enemy
             if (_collider != null) _collider.enabled = false;
             Destroy(gameObject, 3f);
             PlayAnimationByTrigger(AnimationType.DEATH);
+            OnKillEvent?.Invoke();
         }
 
         public void OnDamage(float f)
