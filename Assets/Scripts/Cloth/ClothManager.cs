@@ -9,7 +9,7 @@ namespace Cloth
     public enum ClothType
     {
         SPEED,
-        INVINCIBLE 
+        INVINCIBLE
 
     }
     public class ClothManager : Singleton<ClothManager>
@@ -20,12 +20,5 @@ namespace Cloth
         {
             return clothSetups.Find(i => i.clothType == clothType);
         }
-    }
-
-    [System.Serializable]
-    public class ClothSetup
-    {
-        public ClothType clothType;
-        public Texture2D texture;
     }
 }

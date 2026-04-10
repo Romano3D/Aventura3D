@@ -8,6 +8,7 @@ using Ebac.Core.Singleton;
 public class SaveManager : Singleton<SaveManager>
 {
     [SerializeField] private SaveSetup _saveSetup;
+    [SerializeField] private Cloth.ClothChanger clothChanger;
     private string _path = Application.streamingAssetsPath + "/save.txt";
 
     public int lastLevel;
@@ -58,11 +59,15 @@ public class SaveManager : Singleton<SaveManager>
         Save();
     }
 
-
     public void SaveLastLevel(int level)
     {
         _saveSetup.lastLevel = level;
         SaveItens();
+        Save();
+    }
+    public void SaveOutfit()
+    {
+        _saveSetup.equippedOutfit = clothChanger.currentClothId;
         Save();
     }
     #endregion
@@ -113,5 +118,5 @@ public class SaveSetup
     public float health;
 
     public string playerName;
-    public string qualquer;
+    public int equippedOutfit;
 }
