@@ -274,6 +274,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &149959126 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4989565297777500406, guid: a2b9e82c1bf4df54c80d0d066e6c152b, type: 3}
+  m_PrefabInstance: {fileID: 4876245379007097019}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &178481865
 GameObject:
   m_ObjectHideFlags: 0
@@ -3963,6 +3974,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_SaveManager
       objectReference: {fileID: 0}
+    - target: {fileID: 9149680922889368324, guid: 14aa6105525ac434cb679e0135e014ee, type: 3}
+      propertyPath: _saveSetup.coins
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9149680922889368324, guid: 14aa6105525ac434cb679e0135e014ee, type: 3}
+      propertyPath: _saveSetup.lastLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9149680922889368324, guid: 14aa6105525ac434cb679e0135e014ee, type: 3}
+      propertyPath: _saveSetup.playerName
+      value: Romano
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4095,7 +4118,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1585176208328264027, guid: a2b9e82c1bf4df54c80d0d066e6c152b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4876245379007097022}
   m_SourcePrefab: {fileID: 100100000, guid: a2b9e82c1bf4df54c80d0d066e6c152b, type: 3}
 --- !u!224 &4876245379007097020 stripped
 RectTransform:
@@ -4113,6 +4139,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55686df5005740e4490e01e2e0874c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4876245379007097022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000150684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 188bc88291dbe8a4a84da337e977a911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiTextName: {fileID: 149959126}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
