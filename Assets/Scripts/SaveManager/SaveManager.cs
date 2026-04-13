@@ -8,7 +8,7 @@ using Ebac.Core.Singleton;
 public class SaveManager : Singleton<SaveManager>
 {
     [SerializeField] private SaveSetup _saveSetup;
-    [SerializeField] private Cloth.ClothChanger clothChanger;
+
     private string _path = Application.streamingAssetsPath + "/save.txt";
 
     public int lastLevel;
@@ -35,7 +35,7 @@ public class SaveManager : Singleton<SaveManager>
 
     private void Start()
     {
-        Invoke(nameof(Load), .1f);
+        Load();
     }
     #region SAVE
 
@@ -65,17 +65,13 @@ public class SaveManager : Singleton<SaveManager>
         SaveItens();
         Save();
     }
-    public void SaveOutfit()
-    {
-        _saveSetup.equippedOutfit = clothChanger.currentClothId;
-        Save();
-    }
     #endregion
 
     private void SaveFile(string json)
     {
         Debug.Log(_path);
         File.WriteAllText(_path, json);
+
     }
 
     [NaughtyAttributes.Button]
@@ -95,7 +91,7 @@ public class SaveManager : Singleton<SaveManager>
             Save();
         }
 
-            FileLoaded.Invoke(_saveSetup);
+        FileLoaded.Invoke(_saveSetup);
     }
 
     [NaughtyAttributes.Button]
@@ -118,5 +114,4 @@ public class SaveSetup
     public float health;
 
     public string playerName;
-    public int equippedOutfit;
 }

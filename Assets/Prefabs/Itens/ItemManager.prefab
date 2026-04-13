@@ -46,10 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSetups:
   - itemType: 0
-    sOint: {fileID: 11400000, guid: 96e93d8a919d7b64abd6435a97e181a2, type: 2}
+    soInt: {fileID: 11400000, guid: 96e93d8a919d7b64abd6435a97e181a2, type: 2}
+    icon: {fileID: 21300000, guid: 9f9bf3ae427d79f41bb24c34b03fbd82, type: 3}
   - itemType: 2
-    sOint: {fileID: 11400000, guid: 8f342be3ab0d850468f4a88838ab9530, type: 2}
-  coins: {fileID: 0}
-  coinsSpecial: {fileID: 0}
-  uiTextcoins: {fileID: 0}
-  uiTextcoinsSpecial: {fileID: 0}
+    soInt: {fileID: 11400000, guid: 8f342be3ab0d850468f4a88838ab9530, type: 2}
+    icon: {fileID: 21300000, guid: d11108400de5194409eac2ae42737130, type: 3}

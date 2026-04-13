@@ -202,12 +202,12 @@ public class Player : Singleton<Player>, IDamageable
     {
         StartCoroutine(ChangeTextureCoroutine(setup, duration));
     }
-
     IEnumerator ChangeTextureCoroutine(ClothSetup setup, float duration)
     {
         _clothChanger.ChangeTexture(setup);
         yield return new WaitForSeconds(duration);
         _clothChanger.ResetTexture();
+
     }
 }
 

@@ -22,13 +22,16 @@ namespace Item
         private void Start()
         {
             Reset();
+           // LoadItemsFromSave();
+        }
+        private void OnSaveLoaded(SaveSetup setup)
+        {
             LoadItemsFromSave();
         }
 
         private void LoadItemsFromSave()
         {
             AddByType(ItemType.COIN, (int) SaveManager.Instance.Setup.coins);
-            AddByType(ItemType.COINSPECIAL, (int)SaveManager.Instance.Setup.coins);
             AddByType(ItemType.LIFE_PACK, (int)SaveManager.Instance.Setup.health);
         }
         private void Reset()
@@ -66,11 +69,7 @@ namespace Item
         {
             AddByType(ItemType.LIFE_PACK);
         }
-        [NaughtyAttributes.Button]
-        private void AddCoinSpecial()
-        {
-            AddByType(ItemType.COINSPECIAL);
-        }
+        
     }
     }
 

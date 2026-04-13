@@ -16,4 +16,9 @@ public class PlayLevel : MonoBehaviour
     {
         uiTextName.text = "Play " + (setup.lastLevel + 1);
     }
+
+    private void OnDestroy()
+    {
+        SaveManager.Instance.FileLoaded -= OnLoad;
+    }
 }

@@ -21,4 +21,11 @@ namespace Cloth
             return clothSetups.Find(i => i.clothType == clothType);
         }
     }
+
+    [System.Serializable]
+    public class ClothSetup
+    {
+        public ClothType clothType;
+        public Texture2D texture;
+    }
 }
