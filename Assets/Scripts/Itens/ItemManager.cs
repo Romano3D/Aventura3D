@@ -22,7 +22,7 @@ namespace Item
         private void Start()
         {
             Reset();
-           // LoadItemsFromSave();
+            LoadItemsFromSave();
         }
         private void OnSaveLoaded(SaveSetup setup)
         {
@@ -64,6 +64,11 @@ namespace Item
         {
             AddByType(ItemType.COIN);
         }
+        private void AddCoinSpecial()
+        {
+            AddByType(ItemType.COINSPECIAL);
+        }
+
         [NaughtyAttributes.Button]
         private void AddLifePack()
         {
@@ -79,5 +84,6 @@ namespace Item
         public ItemType itemType;
         public SOint soInt;
         public Sprite icon;
+        
     }
 

@@ -4,8 +4,10 @@ using UnityEngine;
 using Cloth;
 using TMPro;
 
-namespace Cloth
+
+namespace Cloht
 {
+
     public class ClothChanger : MonoBehaviour
     {
         public SkinnedMeshRenderer mesh;
@@ -17,7 +19,7 @@ namespace Cloth
 
         private void Awake()
         {
-         _defaultTexture = (Texture2D) mesh.sharedMaterials[0].GetTexture(shaderIdName);
+            _defaultTexture = (Texture2D) mesh.sharedMaterials[0].GetTexture(shaderIdName);
         }
 
         [NaughtyAttributes.Button]
@@ -25,7 +27,7 @@ namespace Cloth
         {
             mesh.sharedMaterials[0].SetTexture(shaderIdName, texture);
         }
-
+     
         public void ChangeTexture(ClothSetup setup)
         {
             mesh.sharedMaterials[0].SetTexture(shaderIdName, setup.texture);
@@ -35,7 +37,5 @@ namespace Cloth
         {
             mesh.sharedMaterials[0].SetTexture(shaderIdName, _defaultTexture);
         }
-  }
-
+    }
 }
-

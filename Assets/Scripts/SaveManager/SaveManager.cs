@@ -35,7 +35,7 @@ public class SaveManager : Singleton<SaveManager>
 
     private void Start()
     {
-        Load();
+        Invoke(nameof(Load), .1f);
     }
     #region SAVE
 
@@ -91,7 +91,7 @@ public class SaveManager : Singleton<SaveManager>
             Save();
         }
 
-        FileLoaded.Invoke(_saveSetup);
+       // FileLoaded.Invoke(_saveSetup);
     }
 
     [NaughtyAttributes.Button]

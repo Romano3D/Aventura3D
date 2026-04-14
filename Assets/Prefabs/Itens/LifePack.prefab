@@ -47,12 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 421071e698c1f0b47b881a529b92dfc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxType: 1
   itemType: 2
   compareTag: Player
   particleVFX: {fileID: 0}
   timToHide: 3
   graphicItem: {fileID: 919132149155446097, guid: 8bd533ab93df7fe4ab9d32af4651f278, type: 3}
-  collider: {fileID: 4535181290246719}
   audioSource: {fileID: 0}
 --- !u!33 &3220497075508659133
 MeshFilter:

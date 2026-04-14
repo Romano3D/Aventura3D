@@ -24,8 +24,8 @@ namespace Cloht
         public virtual void Collect()
         {
             Debug.Log("Collect");
-
-           var setup = ClothManager.Instance.GetSetupByType(clothType);
+            
+            var setup = ClothManager.Instance.GetSetupByType(clothType);
 
             Player.Instance.ChangeTexture(setup, duration);
 

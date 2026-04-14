@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Ebac.Core.Singleton;
 using Cloht;
@@ -175,7 +174,7 @@ public class Player : Singleton<Player>, IDamageable
 
             characterController.enabled = true;
 
-            StartCoroutine(EndRespawn()); //  chama aqui
+            StartCoroutine(EndRespawn()); 
         }
     }
 
